@@ -12,7 +12,7 @@ app.use(express.json());
 app.get('/blogposts', (req, res) => {
     BlogPost
       .find()
-      .lmit(10)
+      .limit(12)
       .then(blogposts => {
           res.json({
               blogposts: blogposts.map(
@@ -25,9 +25,9 @@ app.get('/blogposts', (req, res) => {
       });
 });
 
-app.get('blogposts/:id', (req, res) => {
+app.get('/blogposts/:id', (req, res) => {
     BlogPost
-      .finsById(req.params.id)
+      .findById(req.params.id)
       .then(blogpost => res.json(blogpost.serialize()))
       .catch(err => {
           console.error(err);
